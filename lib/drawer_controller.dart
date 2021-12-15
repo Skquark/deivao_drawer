@@ -1,7 +1,7 @@
 import 'package:flutter/animation.dart';
 
 class DeivaoDrawerController {
-  AnimationController animation;
+  AnimationController? animation;
 
   void toggle() {
     if (animation?.value == 0)
@@ -19,6 +19,6 @@ class DeivaoDrawerController {
   }
 
   void dispose(){
-    animation.dispose();
+    animation!.dispose();
   }
 }

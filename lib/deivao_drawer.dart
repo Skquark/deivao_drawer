@@ -13,10 +13,10 @@ class DeivaoDrawer extends StatefulWidget {
   final DeivaoDrawerController controller;
 
   DeivaoDrawer({
-    Key key,
-    @required this.drawer,
-    @required this.child,
-    DeivaoDrawerController controller,
+    Key? key,
+    required this.drawer,
+    required this.child,
+    DeivaoDrawerController? controller,
   })  : assert(drawer != null),
         assert(child != null),
         controller = controller ?? DeivaoDrawerController(),
@@ -40,25 +40,25 @@ class _DeivaoDrawerState extends State<DeivaoDrawer>
       color: Theme.of(context).primaryColor,
       child: GestureDetector(
         onHorizontalDragStart: (details) {
-          enableDrawing = controller.value == 1 ||
+          enableDrawing = controller!.value == 1 ||
               (details.globalPosition.dx <
                   MediaQuery.of(context).size.height * 0.1);
         },
         onHorizontalDragUpdate: (details) {
           if (enableDrawing)
-            controller.value +=
-                details.primaryDelta / MediaQuery.of(context).size.width * 1.5;
+            controller!.value +=
+                details.primaryDelta! / MediaQuery.of(context).size.width * 1.5;
         },
         onHorizontalDragEnd: (details) {
-          if (controller.value > 0.5)
-            controller.forward();
+          if (controller!.value > 0.5)
+            controller!.forward();
           else
-            controller.reverse();
+            controller!.reverse();
         },
         child: Stack(
           children: <Widget>[
             AnimatedBuilder(
-              animation: controller,
+              animation: controller!,
               child: Material(child: widget.drawer),
               builder: (context, _child) {
                 return Transform(
